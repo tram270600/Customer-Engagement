@@ -1,23 +1,46 @@
 import { navData } from "../lib/NavData";
 import styles from "./SideNav.module.scss";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import classNames from "classnames";
 
 export default function Sidenav() {
+  const [isExpand, setIsExpand] = useState(true);
+  const [activeNavItem, setActiveNavItem] = useState(0);
+  const toggleExpandNav = () => {
+    setIsExpand(!isExpand);
+  };
+
   return (
-    <div className="sideNav">
+    <div className={isExpand ? styles.sideNav : styles.sideNavClosed}>
       {navData.map((item) => {
         return (
-          <NavLink key={item.id} className={styles.sideitem} to={item.link}>
+          <NavLink
+            onClick={() => setActiveNavItem(item.id)}
+            key={item.id}
+            className={classNames(styles.sideItem, {
+              [styles.sideItemActive]: activeNavItem === item.id,
+            })}
+            to={item.link}
+          >
             {item.icon}
-            <span className={styles.linkText}>{item.text}</span>
+            <span
+              className={isExpand ? styles.linkText : styles.linkTextClosed}
+            >
+              {item.text}
+            </span>
           </NavLink>
         );
       })}
-      <button className={styles.menuBtn}>
-        <KeyboardDoubleArrowLeftIcon />
+      <button className={styles.menuBtn} onClick={toggleExpandNav}>
+        {isExpand ? (
+          <KeyboardDoubleArrowLeftIcon />
+        ) : (
+          <KeyboardDoubleArrowRightIcon />
+        )}
       </button>
-       
     </div>
   );
 }

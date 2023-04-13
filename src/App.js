@@ -13,7 +13,7 @@ function App() {
       <Sidenav />
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />}/>
           {/*           <Route path="/explore" element={<Explore />} />
           <Route path="/statistics" element={<Statistics />}/>
           <Route path="/settings" element={<Settings />} /> */}
