@@ -1,7 +1,7 @@
 .maxContent {
   margin: 32px;
   height: 100vh;
-  width: 80vw;
+  max-width: 95vw;
 }
 .pageTitle {
   font-style: normal;
@@ -14,8 +14,32 @@
   font-size: 20px;
 }
 .groupField {
-    display: flex;
+  display: flex;
 }
 .inputField {
-    display: flex;
+  display: flex;
 }
+.groupField {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.pageContent {
+  margin-top: 20px;
+}
+
+.SectionTitle {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  margin: 20px 0px;
+}
+
+.pageContent {
+  display: flex;
+  gap: 10vw;
+}
+
+.pageContent > * { flex: 1; }

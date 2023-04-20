@@ -1,12 +1,4 @@
-// import {
-//   HomeIcon,
-//   TravelExploreIcon,
-//   BarChartIcon,
-//   SettingsIcon,
-// } from "@mui/icons-material";
 import HomeIcon  from "@mui/icons-material/Home";
-import TravelExploreIcon from "@mui/icons-material/TravelExplore";
-import BarChartIcon from "@mui/icons-material/BarChart";
 import SettingsIcon from "@mui/icons-material/Settings";
 import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
 import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined';
