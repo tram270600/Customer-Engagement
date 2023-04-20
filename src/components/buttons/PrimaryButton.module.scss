@@ -1,0 +1,21 @@
+:root {
+  --font-size: 16px;
+  --padding: 1rem;
+  --primary-color: #fd636b;
+  --primary-color-hover: #FC4B52;
+  --white: #fff;
+}
+
+.primaryButton {
+  width: 144px;
+  height: 42px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--primary-color-hover);
+  }
+}
+
