@@ -9,6 +9,25 @@ import {
 import { useState } from "react";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import HorizontalStepper from "../components/HorizontalStepper/HorizontalStepper";
+
+const demarkRegion = [
+  { id: 1, name: "Copenhagen" },
+  { id: 2, name: "Aarhus" },
+  { id: 3, name: "Odense" },
+  { id: 4, name: "Aalborg" },
+  { id: 5, name: "Esbjerg" },
+  { id: 6, name: "Randers" },
+  { id: 7, name: "Kolding" },
+  { id: 8, name: "Horsens" },
+  { id: 9, name: "Vejle" },
+  { id: 10, name: "Herning" },
+  { id: 11, name: "Roskilde" },
+  { id: 12, name: "Helsingør" },
+  { id: 13, name: "Hillerød" },
+  { id: 14, name: "Slagelse" },
+  { id: 15, name: "Frederikshavn" },
+];
+
 export default function Booking() {
   const [fromCity, setFromCity] = useState("");
   const [toCity, setToCity] = useState("");
@@ -42,7 +61,6 @@ export default function Booking() {
           ></HorizontalStepper>
         </div>
 
-        
         <div>
           <div className={styles.pageContent}>
             <div className={styles.contentSection}>
@@ -82,7 +100,7 @@ export default function Booking() {
                 />
               </div>
             </div>
-            <div className={styles.contentSection}>
+            <div className={styles.bookingInfo}>
               <div className={styles.SectionTitle}>Location</div>
               <div className={styles.groupField}>
                 <FormControl fullWidth>
@@ -94,9 +112,9 @@ export default function Booking() {
                     label="From"
                     onChange={(e) => setFromCity(e.target.value)}
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {demarkRegion.map((item) => (
+                      <MenuItem value={item.id}>{item.name}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
                 <FormControl fullWidth>
@@ -108,17 +126,17 @@ export default function Booking() {
                     label="To"
                     onChange={(e) => setToCity(e.target.value)}
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                    {demarkRegion.map((item) => (
+                      <MenuItem value={item.id}>{item.name}</MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
               </div>
-              <div className={styles.SectionTitle}>Shipping Date</div>
+              <div style={{ marginTop: "30px" }} />
               <form className={styles.container} noValidate>
                 <TextField
                   id="date"
-                  label="Birthday"
+                  label="Shipping Date"
                   type="date"
                   defaultValue={new Date()}
                   className={styles.textField}

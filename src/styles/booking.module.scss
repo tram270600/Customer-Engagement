@@ -2,9 +2,9 @@
 :root {
   --font-size: 16px;
   --padding: 1rem;
-  --primary-color: #FD636B;
+  --primary-color: #fd636b;
   --white: #fff;
- }
+}
 
 .maxContent {
   margin: 32px;
@@ -50,7 +50,9 @@
   gap: 10vw;
 }
 
-.pageContent > * { flex: 1; }
+.pageContent > * {
+  flex: 1;
+}
 
 .assignBtn {
   position: absolute;
@@ -60,4 +62,12 @@
 .stepper {
   margin: 30px auto;
   width: 80vw;
+}
+
+.contentSection {
+  border-color: #0a1929;
+  border-style: dashed;
+  border-width: 2px;
+  border-radius: 15px;
+  padding: 20px;
 }
