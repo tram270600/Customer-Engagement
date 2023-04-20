@@ -10,7 +10,6 @@ import { useState } from "react";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import HorizontalStepper from "../components/HorizontalStepper/HorizontalStepper";
 import SearchRouteResult from "./SearchRouteResult";
-import classNames from "classnames";
 
 const cities = [
   { id: 1, cityEn: "Addis Ababa", cityDk: "Addis Abeba" },
@@ -133,9 +132,9 @@ export default function Booking() {
                       label="From"
                       onChange={(e) => setFromCity(e.target.value)}
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      {cities.map((city) => (
+                        <MenuItem value={city.id}>{city.cityEn}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                   <FormControl fullWidth>
@@ -147,9 +146,9 @@ export default function Booking() {
                       label="To"
                       onChange={(e) => setToCity(e.target.value)}
                     >
-                      <MenuItem value={10}>Ten</MenuItem>
-                      <MenuItem value={20}>Twenty</MenuItem>
-                      <MenuItem value={30}>Thirty</MenuItem>
+                      {cities.map((city) => (
+                        <MenuItem value={city.id}>{city.cityEn}</MenuItem>
+                      ))}
                     </Select>
                   </FormControl>
                 </div>
