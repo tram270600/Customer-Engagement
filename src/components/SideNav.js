@@ -4,6 +4,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import sailBoat from "../icon/sail-boat.svg"
 import classNames from "classnames";
 
 export default function Sidenav() {
@@ -14,33 +15,39 @@ export default function Sidenav() {
   };
 
   return (
-    <div className={isExpand ? styles.sideNav : styles.sideNavClosed}>
-      {navData.map((item) => {
-        return (
-          <NavLink
-            onClick={() => setActiveNavItem(item.id)}
-            key={item.id}
-            className={classNames(styles.sideItem, {
-              [styles.sideItemActive]: activeNavItem === item.id,
-            })}
-            to={item.link}
-          >
-            {item.icon}
-            <span
-              className={isExpand ? styles.linkText : styles.linkTextClosed}
+    <>
+      <div className={isExpand ? styles.sideNav : styles.sideNavClosed}>
+        <div className={styles.companyName}>
+          <img src={sailBoat} alt="Sail boat" />
+          <p className={isExpand ? '' : styles.companyNameClosed}> Eastern India </p>
+        </div>
+        {navData.map((item) => {
+          return (
+            <NavLink
+              onClick={() => setActiveNavItem(item.id)}
+              key={item.id}
+              className={classNames(styles.sideItem, {
+                [styles.sideItemActive]: activeNavItem === item.id,
+              })}
+              to={item.link}
             >
-              {item.text}
-            </span>
-          </NavLink>
-        );
-      })}
-      <button className={styles.menuBtn} onClick={toggleExpandNav}>
-        {isExpand ? (
-          <KeyboardDoubleArrowLeftIcon />
-        ) : (
-          <KeyboardDoubleArrowRightIcon />
-        )}
-      </button>
-    </div>
+              {item.icon}
+              <span
+                className={isExpand ? styles.linkText : styles.linkTextClosed}
+              >
+                {item.text}
+              </span>
+            </NavLink>
+          );
+        })}
+        <button className={styles.menuBtn} onClick={toggleExpandNav}>
+          {isExpand ? (
+            <KeyboardDoubleArrowLeftIcon />
+          ) : (
+            <KeyboardDoubleArrowRightIcon />
+          )}
+        </button>
+      </div>
+    </>
   );
 }

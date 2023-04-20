@@ -8,6 +8,8 @@ import HomeIcon  from "@mui/icons-material/Home";
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SettingsIcon from "@mui/icons-material/Settings";
+import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import FeaturedPlayListOutlinedIcon from '@mui/icons-material/FeaturedPlayListOutlined';
 export const navData = [
   {
     id: 0,
@@ -17,15 +19,15 @@ export const navData = [
   },
   {
     id: 1,
-    icon: <TravelExploreIcon />,
-    text: "Explore",
-    link: "explore",
+    icon: <EventNoteOutlinedIcon />,
+    text: "Booking",
+    link: "booking",
   },
   {
     id: 2,
-    icon: <BarChartIcon />,
-    text: "Statistics",
-    link: "statistics",
+    icon: <FeaturedPlayListOutlinedIcon />,
+    text: "Booked List",
+    link: "booked-list",
   },
   {
     id: 3,
