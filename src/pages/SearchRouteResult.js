@@ -2,6 +2,10 @@ import styles from "../styles/searchRouteResult.module.scss";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 
 export default function SearchRouteResult() {
+  const handleSelectRoute = (e) => {
+    // console.log(e.currentTarget.id);
+    console.log("Hhehe", e);
+  };
   const columnData = [
     "From - To",
     "Estimate time",
@@ -42,7 +46,11 @@ export default function SearchRouteResult() {
               <div>{content.period}</div>
               <div>{content.price}</div>
               <div>
-                <PrimaryButton name="Select"></PrimaryButton>
+                <PrimaryButton
+                  key={content.id}
+                  name="Select"
+                  onClick={(e) => handleSelectRoute(e)}
+                ></PrimaryButton>
               </div>
             </div>
           );
