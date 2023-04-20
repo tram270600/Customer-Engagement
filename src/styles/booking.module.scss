@@ -65,9 +65,13 @@
 }
 
 .contentSection {
-  border-color: #0a1929;
-  border-style: dashed;
-  border-width: 2px;
-  border-radius: 15px;
   padding: 20px;
+}
+
+.dashContent {
+  border-color: #828282;
+  border-width: 2px;
+  border-style: dashed;
+  border-radius: 8px;
+  padding: 16px;
 }

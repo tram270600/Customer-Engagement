@@ -1,0 +1,34 @@
+.routeSectionHeader {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    margin: 20px 0px;
+}
+.tableColumnGroupHeader {
+    display: flex;
+}
+
+.tableColumnHeader {
+    background-color: #EDF2F7;
+    border-bottom: 1px solid #cbcbcb;
+    border-right: 1px solid #cbcbcb;
+    padding: 20px 10px;
+    flex: 1;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+}
+
+.tableColumnData {
+    display: flex;
+}
+
+.tableColumnData > * {
+    flex: 1;
+    padding: 20px 10px;
+    text-align: left;
+    border-bottom: 1px solid #cbcbcb;
+    border-right: 1px solid #cbcbcb;
+}
+
