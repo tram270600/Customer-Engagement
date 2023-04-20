@@ -4,7 +4,7 @@ import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
-import sailBoat from "../icon/sail-boat.svg"
+import sailBoat from "../assets/sail-boat.svg"
 import classNames from "classnames";
 
 export default function Sidenav() {

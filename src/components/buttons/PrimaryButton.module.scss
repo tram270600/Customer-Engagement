@@ -19,3 +19,15 @@
   }
 }
 
+.secondaryButton {
+    width: 144px;
+    height: 42px;
+    background-color: transparent;
+    border: 1px solid #828282;
+    border-radius: 4px;
+
+    &:hover {
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+      }
+}

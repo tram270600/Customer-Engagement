@@ -10,6 +10,8 @@ import { useState } from "react";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import HorizontalStepper from "../components/HorizontalStepper/HorizontalStepper";
 import SearchRouteResult from "./SearchRouteResult";
+import Payment from "./Payment";
+import Confirmation from "./Confirmation";
 
 const cities = [
   { id: 1, cityEn: "Addis Ababa", cityDk: "Addis Abeba" },
@@ -194,7 +196,22 @@ export default function Booking() {
             </div>
           </div>
         )}
-        {activeStep === 1 && <SearchRouteResult></SearchRouteResult>}
+        {activeStep === 1 && (
+          <SearchRouteResult
+            onSelectRow={() => setActiveStep(activeStep + 1)}
+          ></SearchRouteResult>
+        )}
+        {activeStep === 2 && (
+          <Payment
+            onCancelBtnClick={() => setActiveStep(activeStep - 1)}
+            onConfirmBtnClick={() => setActiveStep(activeStep + 1)}
+          ></Payment>
+        )}
+        {activeStep === 3 && (
+          <Confirmation
+            onBackToBookClick={() => setActiveStep(0)}
+          ></Confirmation>
+        )}
       </div>
     </>
   );

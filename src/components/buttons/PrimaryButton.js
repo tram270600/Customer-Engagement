@@ -8,12 +8,24 @@ import styles from "./PrimaryButton.module.scss";
 
 // export default PrimaryButton;
 
-export default function PrimaryButton({ name, color, onClick }) {
+export default function PrimaryButton({
+  name,
+  color,
+  type = "primary",
+  onClick,
+}) {
   return (
     <>
-      <button className={styles.primaryButton} onClick={() => onClick()}>
-        {name}
-      </button>
+      {type === "primary" && (
+        <button className={styles.primaryButton} onClick={() => onClick()}>
+          {name}
+        </button>
+      )}
+      {type === "secondary" && (
+        <button className={styles.secondaryButton} onClick={() => onClick()}>
+          {name}
+        </button>
+      )}
     </>
   );
 }

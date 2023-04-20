@@ -1,10 +1,11 @@
 import styles from "../styles/searchRouteResult.module.scss";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 
-export default function SearchRouteResult() {
+export default function SearchRouteResult({onSelectRow}) {
   const handleSelectRoute = (e) => {
     // console.log(e.currentTarget.id);
     console.log("Hhehe", e);
+    onSelectRow();
   };
   const columnData = [
     "From - To",
