@@ -14,6 +14,7 @@ import Payment from "./Payment";
 import Confirmation from "./Confirmation";
 import { cities } from "../lib/Cities";
 import { categories } from "../lib/Category";
+import InputAdornment from "@mui/material/InputAdornment";
 
 export default function Booking() {
   const [fromCity, setFromCity] = useState("");
@@ -33,24 +34,58 @@ export default function Booking() {
       "Content-Type": "application/problem+json",
     };
     try {
+      // const response = await fetch(
+      //   "https://wa-eit-eit1.azurewebsites.net/api/Routes/FindShortestPath",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/problem+json",
+      //       Accept: "application/problem+json",
+      //       "Access-Control-Allow-Origin": "*",
+      //     },
+      //     body: JSON.stringify({
+      //       type: "https://example.com/problems/invalid-input",
+      //       title: "Invalid Input",
+      //       status: 400,
+      //       detail: "One or more input parameters are invalid.",
+      //       instance: "urn:uuid:abc123",
+      //       invalidParams: [
+      //         {
+      //           name: "From",
+      //           reason: "From location is required.",
+      //         },
+      //         {
+      //           name: "To",
+      //           reason: "To location is required.",
+      //         },
+      //         {
+      //           name: "Weight",
+      //           reason: "Weight cannot be zero.",
+      //         },
+      //       ],
+      //     }),
+      //   }
+      // );
+
       const response = await fetch(
         "https://wa-eit-eit1.azurewebsites.net/api/Routes/FindShortestPath",
         {
-          mode: "no-cors",
           method: "POST",
-          headers: headers,
-          body: JSON.stringify(
-            {
-              From: "Cape Town",
-              To: "Tunis",
-              Category: "",
-              Weight: 50,
-              type: "https://example.com/problems/invalid-input",
-              title: "Invalid Input",
-              status: 400,
-              detail: "One or more input parameters are invalid.",
-            }
-          ),
+          headers: {
+            "Content-Type": "application/problem+json",
+            "Accept": "application/problem+json",
+            "Access-Control-Allow-Origin": "*",
+          },
+          body: JSON.stringify({
+            From: "Cape Town",
+            To: "Tunis",
+            Category: "",
+            Weight: 50,
+            type: "https://example.com/problems/invalid-input",
+            title: "Invalid Input",
+            status: 400,
+            detail: "One or more input parameters are invalid.",
+          }),
         }
       );
 
@@ -132,7 +167,9 @@ export default function Booking() {
                 />
                 <div className={styles.groupField}>
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                    <InputLabel id="demo-simple-select-label">
+                      Category
+                    </InputLabel>
                     <Select
                       labelId="demo-simple-select-label"
                       id="demo-simple-select-2"
@@ -149,23 +186,43 @@ export default function Booking() {
                     id="outlined-basic"
                     label="Weight"
                     variant="outlined"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">kg</InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
                 <div className={styles.groupField}>
                   <TextField
                     id="outlined-basic"
-                    label="Height (cm)"
+                    label="Height"
                     variant="outlined"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">cm</InputAdornment>
+                      ),
+                    }}
                   />
                   <TextField
                     id="outlined-basic"
-                    label="Width (cm)"
+                    label="Width"
                     variant="outlined"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">cm</InputAdornment>
+                      ),
+                    }}
                   />
                   <TextField
                     id="outlined-basic"
-                    label="Depth (cm)"
+                    label="Depth"
                     variant="outlined"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">cm</InputAdornment>
+                      ),
+                    }}
                   />
                 </div>
               </div>

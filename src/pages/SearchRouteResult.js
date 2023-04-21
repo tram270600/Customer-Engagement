@@ -1,6 +1,6 @@
 import styles from "../styles/searchRouteResult.module.scss";
 import PrimaryButton from "../components/buttons/PrimaryButton";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function SearchRouteResult({ onSelectRow, routeData = [] }) {
   const handleSelectRoute = (e) => {
@@ -31,7 +31,7 @@ export default function SearchRouteResult({ onSelectRow, routeData = [] }) {
       price: "23",
     },
   ];
-  useEffect(() => {
+  useRef(() => {
     if (routeData === []) {
       routeData = contentData;
     }
