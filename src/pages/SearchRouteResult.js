@@ -1,7 +1,8 @@
 import styles from "../styles/searchRouteResult.module.scss";
 import PrimaryButton from "../components/buttons/PrimaryButton";
+import { useEffect } from "react";
 
-export default function SearchRouteResult({onSelectRow}) {
+export default function SearchRouteResult({ onSelectRow, routeData = [] }) {
   const handleSelectRoute = (e) => {
     // console.log(e.currentTarget.id);
     console.log("Hhehe", e);
@@ -30,6 +31,12 @@ export default function SearchRouteResult({onSelectRow}) {
       price: "23",
     },
   ];
+  useEffect(() => {
+    if (routeData === []) {
+      routeData = contentData;
+    }
+    console.log("Response result: ", routeData);
+  }, []);
   return (
     <>
       <div className={styles.routeSectionHeader}>Search Results</div>

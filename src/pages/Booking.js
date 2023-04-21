@@ -12,43 +12,8 @@ import HorizontalStepper from "../components/HorizontalStepper/HorizontalStepper
 import SearchRouteResult from "./SearchRouteResult";
 import Payment from "./Payment";
 import Confirmation from "./Confirmation";
-
-const cities = [
-  { id: 1, cityEn: "Addis Ababa", cityDk: "Addis Abeba" },
-  { id: 2, cityEn: "Bahr el Ghazal", cityDk: "Bahr el Ghazal" },
-  { id: 3, cityEn: "Cairo", cityDk: "Cairo" },
-  { id: 4, cityEn: "Dakar", cityDk: "Dakar" },
-  { id: 5, cityEn: "Darfur", cityDk: "Darfur" },
-  { id: 6, cityEn: "Dragon Mountains", cityDk: "Drakbergen" },
-  { id: 7, cityEn: "Gold Coast", cityDk: "Guldkysten" },
-  { id: 8, cityEn: "Kabalo", cityDk: "Kabalo" },
-  { id: 9, cityEn: "Canary Islands", cityDk: "De Kanariske Øer" },
-  { id: 10, cityEn: "Walvis Bay", cityDk: "Hvalbugten" },
-  { id: 11, cityEn: "Cape Guardafui", cityDk: "Kap Guardafui" },
-  { id: 12, cityEn: "Cape St. Marie", cityDk: "Kap St. Marie" },
-  { id: 13, cityEn: "Cape Town", cityDk: "Kapstaden" },
-  { id: 14, cityEn: "Congo", cityDk: "Kongo" },
-  { id: 15, cityEn: "Luanda", cityDk: "Luanda" },
-  { id: 16, cityEn: "Marrakech", cityDk: "Marrakech" },
-  { id: 17, cityEn: "Mozambique", cityDk: "Moçambique" },
-  { id: 18, cityEn: "Omdurman", cityDk: "Omdurman" },
-  { id: 19, cityEn: "Sahara", cityDk: "Sahara" },
-  { id: 20, cityEn: "Saint Helena", cityDk: "Sankta Helena" },
-  { id: 21, cityEn: "Sierra Leone", cityDk: "Sierra Leone" },
-  { id: 22, cityEn: "Bight of Benin", cityDk: "Beninbugten" },
-  { id: 23, cityEn: "Suakin", cityDk: "Suakin" },
-  { id: 24, cityEn: "Tamatave", cityDk: "Tamatave" },
-  { id: 25, cityEn: "Tangier", cityDk: "Tangen" },
-  { id: 26, cityEn: "Timbuktu", cityDk: "Timbuktu" },
-  { id: 27, cityEn: "Tripoli", cityDk: "Tripolis" },
-  { id: 28, cityEn: "Tunis", cityDk: "Tunis" },
-  { id: 29, cityEn: "Victoria Falls", cityDk: "Victoriafaldet" },
-  { id: 30, cityEn: "Lake Victoria", cityDk: "Victoriasøen" },
-  { id: 31, cityEn: "Wadai", cityDk: "Wadai" },
-  { id: 32, cityEn: "Zanzibar", cityDk: "Zanzibar" },
-  { id: 33, cityEn: "Tangiers", cityDk: "Tangiers" },
-  { id: 34, cityEn: "Slave Coast", cityDk: "Slave kysten" },
-];
+import { cities } from "../lib/Cities";
+import { categories } from "../lib/Category";
 
 export default function Booking() {
   const [fromCity, setFromCity] = useState("");
@@ -56,11 +21,84 @@ export default function Booking() {
   const [priceChecked, setPriceChecked] = useState(false);
   const [shortPathChecked, setShortPathChecked] = useState(false);
   const [activeStep, setActiveStep] = useState(0);
+  const [categoryType, setCategoryType] = useState("");
 
-  const handleOnClick = () => {
-    console.log("heheheh");
+  const [routeData, setRouteData] = useState({ data: [] });
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState("");
+
+  const handleOnClick = async () => {
+    setIsLoading(true);
+    const headers = {
+      "Content-Type": "application/problem+json",
+    };
+    try {
+      const response = await fetch(
+        "https://wa-eit-eit1.azurewebsites.net/api/Routes/FindShortestPath",
+        {
+          mode: "no-cors",
+          method: "POST",
+          headers: headers,
+          body: JSON.stringify(
+            {
+              From: "Cape Town",
+              To: "Tunis",
+              Category: "",
+              Weight: 50,
+              type: "https://example.com/problems/invalid-input",
+              title: "Invalid Input",
+              status: 400,
+              detail: "One or more input parameters are invalid.",
+            }
+          ),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      console.log("result is: ", JSON.stringify(result, null, 4));
+
+      setRouteData(result);
+    } catch (err) {
+      setErr("Nnonon", err.message);
+    } finally {
+      setIsLoading(false);
+    }
     setActiveStep(activeStep + 1);
   };
+
+  // const handleOnClick = async () => {
+  //   const url = "https://wa-eit-eit1.azurewebsites.net/api/Routes/FindShortestPath";
+  //   const body = {
+  //     "From": "Cape Town",
+  //     "To": "Tunis",
+  //     "Category": "",
+  //     "Weight": 50
+  //   };
+  //   const headers = {
+  //     "Content-Type": "application/problem+json"
+  //   };
+  //   // const proxyUrl = "https://cors-anywhere.herokuapp.com/"; // CORS proxy service URL
+  //   try {
+  //     const response = await fetch(url, {
+  //       mode: 'no-cors',
+  //       method: "POST",
+  //       body: JSON.stringify(body),
+  //       headers: headers
+  //     });
+  //     const data = await response.json();
+  //     console.log(JSON.stringify(data, null, 4));
+  //     setRouteData(data);
+  //     // do something with the response data
+  //   } catch (error) {
+  //     console.error(error);
+  //     // handle error
+  //   }
+  // }
 
   const handleStepperBackClick = () => {
     setActiveStep(activeStep - 1);
@@ -93,11 +131,20 @@ export default function Booking() {
                   variant="outlined"
                 />
                 <div className={styles.groupField}>
-                  <TextField
-                    id="outlined-basic"
-                    label="Category Type"
-                    variant="outlined"
-                  />
+                  <FormControl fullWidth>
+                    <InputLabel id="demo-simple-select-label">Category</InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select-2"
+                      value={categoryType}
+                      label="Category"
+                      onChange={(e) => setCategoryType(e.target.value)}
+                    >
+                      {categories.map((category) => (
+                        <MenuItem value={category}>{category}</MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
                   <TextField
                     id="outlined-basic"
                     label="Weight"
@@ -158,7 +205,7 @@ export default function Booking() {
                 <form className={styles.container} noValidate>
                   <TextField
                     id="date"
-                    label="Birthday"
+                    label="ShippingDate"
                     type="date"
                     defaultValue={new Date()}
                     className={styles.textField}
@@ -198,6 +245,7 @@ export default function Booking() {
         )}
         {activeStep === 1 && (
           <SearchRouteResult
+            routeData={routeData}
             onSelectRow={() => setActiveStep(activeStep + 1)}
           ></SearchRouteResult>
         )}
